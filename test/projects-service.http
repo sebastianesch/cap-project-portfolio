@@ -1,0 +1,55 @@
+@url = http://localhost:4004/odata/v4/projects
+
+###
+GET {{url}}/isStarted(project=c8941700-2a5e-4cae-a809-70d43f647029)
+
+###
+POST {{url}}/endProject
+Content-Type: application/json
+
+{
+    "project": "c8941700-2a5e-4cae-a809-70d43f647029"
+}
+
+###
+GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.hasStarted()
+
+###
+GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.hasEnded()
+
+###
+POST {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.stop
+Content-Type: application/json
+
+{
+    "endDate": "2023-10-25"
+}
+
+###
+GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)
+
+###
+GET {{url}}/Projects
+
+###
+GET {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+
+###
+PUT {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+Content-Type: application/json
+
+{
+    "name": "My Fancy Project"
+}
+
+###
+DELETE {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+
+###
+POST {{url}}/Projects
+Content-Type: application/json
+
+{
+    "name": "My Fancy Project",
+    "startDate": "2023-01-11"
+}
