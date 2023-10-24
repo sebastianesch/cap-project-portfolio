@@ -1,0 +1,35 @@
+@url = http://localhost:4004/odata/v4/customers
+
+###
+GET {{url}}/Customers
+
+###
+POST {{url}}/Customers
+Content-Type: application/json
+
+{
+    "name": "ACME Inc."
+}
+
+###
+# @name CreateSecondCustomer
+POST {{url}}/Customers
+Content-Type: application/json
+
+{
+    "name": "Foo Inc."
+}
+
+###
+GET {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
+
+###
+PUT {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
+Content-Type: application/json
+
+{
+    "name": "Foo 2 Inc."
+}
+
+###
+DELETE {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
