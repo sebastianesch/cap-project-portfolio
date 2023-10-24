@@ -33,3 +33,13 @@ Content-Type: application/json
 
 ###
 DELETE {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
+
+###
+GET {{url}}/ProjectTypes
+
+###
+GET {{url}}/ProjectTypes
+Accept-Language: de
+
+###
+GET {{url}}/Customers(ID=29514726-9142-4af7-96db-3221a4fb817b)?$expand=projects

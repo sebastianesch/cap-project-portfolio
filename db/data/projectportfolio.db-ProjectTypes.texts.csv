@@ -1,0 +1,7 @@
+locale,code,name,descr
+en,dev,Development,Development Project
+en,rnd,Research & Development,Research and Development Project
+en,con,Consulting,Consulting Project
+de,dev,Entwicklung,Entwicklungsprojekt
+de,rnd,Forschung & Entwicklung,Forschungs- und Entwicklungsprojekt
+de,con,Beratung,Beratungsprojekt
