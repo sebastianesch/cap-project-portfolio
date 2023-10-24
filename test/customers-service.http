@@ -1,10 +1,13 @@
 @url = http://localhost:4004/odata/v4/customers
+@auth = Basic alice:alice
 
 ###
 GET {{url}}/Customers
+Authorization: {{auth}}
 
 ###
 POST {{url}}/Customers
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
@@ -14,6 +17,7 @@ Content-Type: application/json
 ###
 # @name CreateSecondCustomer
 POST {{url}}/Customers
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
@@ -22,9 +26,11 @@ Content-Type: application/json
 
 ###
 GET {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
+Authorization: {{auth}}
 
 ###
 PUT {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
@@ -33,13 +39,17 @@ Content-Type: application/json
 
 ###
 DELETE {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
+Authorization: {{auth}}
 
 ###
 GET {{url}}/ProjectTypes
+Authorization: {{auth}}
 
 ###
 GET {{url}}/ProjectTypes
+Authorization: {{auth}}
 Accept-Language: de
 
 ###
 GET {{url}}/Customers(ID=29514726-9142-4af7-96db-3221a4fb817b)?$expand=projects
+Authorization: {{auth}}

@@ -14,5 +14,17 @@
   },
   "scripts": {
     "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "alice": {
+            "roles": [ "User", "CustomerAdmin" ]
+          }
+        }
+      }
+    }
   }
 }

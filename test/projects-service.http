@@ -1,10 +1,13 @@
 @url = http://localhost:4004/odata/v4/projects
+@auth = Basic alice:alice
 
 ###
 GET {{url}}/isStarted(project=c8941700-2a5e-4cae-a809-70d43f647029)
+Authorization: {{auth}}
 
 ###
 POST {{url}}/endProject
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
@@ -13,12 +16,15 @@ Content-Type: application/json
 
 ###
 GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.hasStarted()
+Authorization: {{auth}}
 
 ###
 GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.hasEnded()
+Authorization: {{auth}}
 
 ###
 POST {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.stop
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
@@ -27,15 +33,19 @@ Content-Type: application/json
 
 ###
 GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)
+Authorization: {{auth}}
 
 ###
 GET {{url}}/Projects
+Authorization: {{auth}}
 
 ###
 GET {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+Authorization: {{auth}}
 
 ###
 PUT {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
@@ -44,9 +54,11 @@ Content-Type: application/json
 
 ###
 DELETE {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+Authorization: {{auth}}
 
 ###
 POST {{url}}/Projects
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
