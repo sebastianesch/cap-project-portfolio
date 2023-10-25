@@ -7,10 +7,14 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^7",
-    "express": "^4"
+    "express": "^4",
+    "@sap/xssec": "^3",
+    "passport": "^0",
+    "@sap/cds-hana": "^2"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1"
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
   },
   "scripts": {
     "start": "cds-serve"
@@ -32,6 +36,14 @@
         "kind": "sqlite",
         "credentials": {
           "url": "db.sqlite"
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        },
+        "db": {
+          "kind": "hana"
         }
       }
     }
