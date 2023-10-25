@@ -1,51 +1,63 @@
 {
-  "name": "cap-project-portfolio",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^7",
-    "express": "^4",
-    "@sap/xssec": "^3",
-    "passport": "^0",
-    "@sap/cds-hana": "^2"
-  },
-  "devDependencies": {
-    "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^7"
-  },
-  "scripts": {
-    "start": "cds-serve"
-  },
-  "cds": {
-    "requires": {
-      "auth": {
-        "kind": "mocked",
-        "users": {
-          "alice": {
-            "roles": [
-              "User",
-              "CustomerAdmin"
-            ]
-          }
+    "name": "cap-project-portfolio",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
+        "@sap/xssec": "^3",
+        "express": "^4",
+        "passport": "^0"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+        "@sap/ux-specification": "^1.108.16",
+        "@sapui5/ts-types": "^1.92.2",
+        "eslint": "^7.32.0",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-customersapp": "cds watch --open customersapp/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy cap-project-portfolio --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "cds": {
+        "requires": {
+            "auth": {
+                "kind": "mocked",
+                "users": {
+                    "alice": {
+                        "roles": [
+                            "User",
+                            "CustomerAdmin"
+                        ]
+                    }
+                }
+            },
+            "db": {
+                "kind": "sqlite",
+                "credentials": {
+                    "url": "db.sqlite"
+                }
+            },
+            "[production]": {
+                "auth": {
+                    "kind": "xsuaa"
+                },
+                "db": {
+                    "kind": "hana"
+                }
+            }
         }
-      },
-      "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "url": "db.sqlite"
-        }
-      },
-      "[production]": {
-        "auth": {
-          "kind": "xsuaa"
-        },
-        "db": {
-          "kind": "hana"
-        }
-      }
-    }
-  }
+    },
+    "sapux": [
+        "app/customersapp"
+    ]
 }
