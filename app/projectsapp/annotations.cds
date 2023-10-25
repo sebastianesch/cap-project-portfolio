@@ -120,6 +120,13 @@ annotate service.Projects with @(
     ]
 );
 
+annotate service.Projects with @(
+    Common.SideEffects #BusinessPartner: {
+        SourceProperties: [customer_ID],
+        TargetEntities  : [customer]
+    }
+);
+
 annotate service.Projects with {
     ID @UI.Hidden : true @UI.HiddenFilter;
     type @(
