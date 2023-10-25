@@ -35,10 +35,9 @@ At the end of this step, you should have access to the Cockpit of your BTP Trial
 
 ## Step 1.1: Create a SAP HANA Cloud Instance
 
-Follow the tutorial [Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html). Only the
-step 1 "Add SAP HANA Cloud to your account" is required for our scenario.
+Follow the tutorial [Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html).
 
-Make sure you note the password for the DBADMIN user in a safe location.
+Make sure you note the password for the DBADMIN user in a safe location. And make sure to configure the HANA database to accept connections from all IP addresses. (Step 2 - #1)
 
 The creation of the SAP HANA Cloud instance takes some time (more than 10 minutes).
 
@@ -66,7 +65,7 @@ When your dev space has been started, open it by clicking on the name.
 
 ## Step 2.2: Checkout the project
 
-In the "Get Started" screen of BAS, choose "Clone from Git" and provide the Repository URL: `https://github.com/sebastianesch/project-portfolio.git`.
+In the "Get Started" screen of BAS, choose "Clone from Git" and provide the Repository URL: `https://github.com/sebastianesch/cap-project-portfolio.git`.
 
 You can now close the "Get Started" view. In the "Explorer" view on the left you should see the files and folders of
 the application project cloned from Git.
@@ -127,7 +126,7 @@ space:          dev
 The deployment takes some time. At the end you should see the following in your terminal window:
 
 ```
-Application "project-portfolio-srv" started and available at "xxxxxxxxtrial-dev-project-portfolio-srv.cfapps.us10-001.hana.ondemand.com"
+Application "cap-project-portfolio-srv" started and available at "xxxxxxxxtrial-dev-cap-project-portfolio-srv.cfapps.us10-001.hana.ondemand.com"
 Skipping deletion of services, because the command line option "--delete-services" is not specified.
 Process finished.
 Use "cf dmol -i 00xx0x0x-xx00-00xx-xxx0-xxxx0x0x0000" to download the logs of the process.
@@ -158,34 +157,27 @@ old version of your app will be displayed.*
 
 ### Add Content to Your Content
 
-Navigate to the "Content Manager" in the left menu. Change to the "Content Explorer" tab and click on the "HTML5 Apps"
-Content Channel. You should see three apps in the list: Customers, Customers Map and Projects. Select all three apps
-and click on "+ Add to my Content".
+Navigate to the "Content Manager" in the left menu. Click on the "Content Explorer" button and then click on the "HTML5 Apps"
+Content Channel. You should see two apps in the list: Customers and Projects. Select both apps
+and click on "Add".
 
 ### Create a Group for your Apps
 
-Switch to the "My Content" tab. You should now see the Role "Everyone" and the three apps you added in the previous
+Switch back to the "Content Manager" via the breadcrumb navigation. You should now see the Role "Everyone" and the three apps you added in the previous
 step. Note that they have "HTML5 Apps" as Channel, the Role has "Local" as Channel.
 
-Click on "+ New" and select "Group" to create new tile group for the Launchpad. Name the Group "Project Portfolio"
+Click on "Create" and select "Group" to create new tile group for the Launchpad. Name the Group "Project Portfolio"
 and assign both apps to your group. Save your group.
-
-*(The Customers Maps app is incomplete at the moment and therefore not available to be added to a Group in Launchpad.)*
 
 ### Create a Role for your Site
 
-In the "My Content" tab, click on "+ New" and select "Role" to create a new Role for your Launchpad.
+In the "Content Manager", click on "Create" and select "Role" to create a new Role for your Launchpad.
 
 - __Title:__ Project Portfolio Admin
 - __ID:__ project_portfolio_admin
 - __Description:__ Admin for the Project Portfolio App
 
-On the right hand side of the screen, you have the "Assign Items" panel. Click in the search field and add all three
-Apps by clicking on the "+" sign.
-
-Click on save on the right side of the main panel to save your role.
-
-*To edit the assigned apps, you have to click on "Edit" in the main panel of the role.*
+Assign both apps to the role and click on save to save your role.
 
 ### Add to the Role to your Site
 
@@ -210,7 +202,7 @@ We need to add the roles defined by the CAP Application backend and we need to a
 ### Add required role
 
 In the first section "Roles" click on the value help icon for the "Role Name" field. In the dialog that appears, set
-the filter for "Application Identifier" to "project-portfolio-\<your app identifier\>". The only visible role should be
+the filter for "Application Identifier" to "cap-roject-portfolio-\<your app identifier\>". The only visible role should be
 the "User" role of the Project Portfolio app. Select it and click "Add" at the bottom of the dialog.
 
 ### Add your user
