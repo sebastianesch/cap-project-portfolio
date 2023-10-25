@@ -33,6 +33,12 @@
           "action": "manage",
           "title": "{{flpTitle}}",
           "subTitle": "{{flpSubtitle}}",
+          "icon": "sap-icon://capital-projects",
+          "indicatorDataSource": {
+              "dataSource": "mainService",
+              "path": "Projects/$count",
+              "refresh": 5
+          },
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"

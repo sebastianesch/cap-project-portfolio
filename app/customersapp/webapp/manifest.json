@@ -33,6 +33,12 @@
           "action": "manage",
           "title": "{{flpTitle}}",
           "subTitle": "{{flpSubtitle}}",
+          "icon": "sap-icon://customer",
+          "indicatorDataSource": {
+              "dataSource": "mainService",
+              "path": "Customers/$count",
+              "refresh": 5
+          },
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
