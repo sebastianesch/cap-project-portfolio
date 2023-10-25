@@ -48,6 +48,7 @@ modules:
           sap.cloud.service: projectportfolio
         - Authentication: OAuth2UserTokenExchange
           Name: projectportfolio_cap_project_portfolio_auth
+          ServiceInstanceName: cap-project-portfolio-auth
           ServiceKeyName: cap-project-portfolio-auth-key
           sap.cloud.service: projectportfolio
         existing_destinations_policy: ignore
