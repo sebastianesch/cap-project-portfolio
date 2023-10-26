@@ -48,11 +48,36 @@ modules:
           sap.cloud.service: projectportfolio
         - Authentication: OAuth2UserTokenExchange
           Name: projectportfolio_cap_project_portfolio_auth
+          ServiceInstanceName: cap-project-portfolio-auth
           ServiceKeyName: cap-project-portfolio-auth-key
           sap.cloud.service: projectportfolio
         existing_destinations_policy: ignore
   build-parameters:
     no-source: true
+- name: cap-project-portfolio-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: cap-project-portfolio_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - projectportofoliocustomersapp.zip
+      name: projectportofoliocustomersapp
+      target-path: resources/
+- name: projectportofoliocustomersapp
+  type: html5
+  path: app/customersapp
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: cap-project-portfolio-auth
   type: org.cloudfoundry.managed-service
@@ -73,10 +98,28 @@ resources:
   parameters:
     config:
       HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: cap-project-portfolio-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          existing_destinations_policy: update
       version: 1.0.0
     service: destination
     service-name: cap-project-portfolio-destination-service
     service-plan: lite
+  requires:
+  - name: srv-api
 - name: cap-project-portfolio_html_repo_host
   type: org.cloudfoundry.managed-service
   parameters:
@@ -84,6 +127,7 @@ resources:
     service-name: cap-project-portfolio-html5-app-host-service
     service-plan: app-host
 parameters:
+  deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:

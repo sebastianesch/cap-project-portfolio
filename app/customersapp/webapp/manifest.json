@@ -1,0 +1,178 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "projectportofolio.customersapp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.11.2",
+      "toolsId": "8315a881-b441-40ee-a073-b7064598605b"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/customers/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Customer-manage": {
+          "semanticObject": "Customer",
+          "action": "manage",
+          "title": "{{flpTitle}}",
+          "subTitle": "{{flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.119.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "projectportofolio.customersapp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "CustomersList",
+          "target": "CustomersList"
+        },
+        {
+          "pattern": "Customers({key}):?query:",
+          "name": "CustomersObjectPage",
+          "target": "CustomersObjectPage"
+        },
+        {
+          "pattern": "Customers({key})/projects({key2}):?query:",
+          "name": "ProjectsObjectPage",
+          "target": "ProjectsObjectPage"
+        }
+      ],
+      "targets": {
+        "CustomersList": {
+          "type": "Component",
+          "id": "CustomersList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Customers",
+              "variantManagement": "Page",
+              "navigation": {
+                "Customers": {
+                  "detail": {
+                    "route": "CustomersObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "CustomersObjectPage": {
+          "type": "Component",
+          "id": "CustomersObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Customers",
+              "navigation": {
+                "projects": {
+                  "detail": {
+                    "route": "ProjectsObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ProjectsObjectPage": {
+          "type": "Component",
+          "id": "ProjectsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Customers/projects"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "projectportfolio"
+  }
+}
