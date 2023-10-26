@@ -1,50 +1,92 @@
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: cap-project-portfolio
+description: A simple CAP project.
 version: 1.0.0
-description: "A simple CAP project."
+modules:
+- name: cap-project-portfolio-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: cap-project-portfolio-auth
+  - name: cap-project-portfolio-db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm
+- name: cap-project-portfolio-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: cap-project-portfolio-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: cap-project-portfolio-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: cap-project-portfolio-destination-service
+    parameters:
+      content-target: true
+  - name: cap-project-portfolio_html_repo_host
+    parameters:
+      service-key:
+        name: cap-project-portfolio_html_repo_host-key
+  - name: cap-project-portfolio-auth
+    parameters:
+      service-key:
+        name: cap-project-portfolio-auth-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: projectportfolio_cap_project_portfolio_html_repo_host
+          ServiceInstanceName: cap-project-portfolio-html5-app-host-service
+          ServiceKeyName: cap-project-portfolio_html_repo_host-key
+          sap.cloud.service: projectportfolio
+        - Authentication: OAuth2UserTokenExchange
+          Name: projectportfolio_cap_project_portfolio_auth
+          ServiceKeyName: cap-project-portfolio-auth-key
+          sap.cloud.service: projectportfolio
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+resources:
+- name: cap-project-portfolio-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: cap-project-portfolio-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: cap-project-portfolio-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: cap-project-portfolio-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: cap-project-portfolio-destination-service
+    service-plan: lite
+- name: cap-project-portfolio_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: cap-project-portfolio-html5-app-host-service
+    service-plan: app-host
 parameters:
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-    - builder: custom
-      commands:
-        - npx cds build --production
-modules:
-  - name: cap-project-portfolio-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: cap-project-portfolio-auth
-      - name: cap-project-portfolio-db
-
-  - name: cap-project-portfolio-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: cap-project-portfolio-db
-
-resources:
-  - name: cap-project-portfolio-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: cap-project-portfolio-${org}-${space}
-        tenant-mode: dedicated
-  - name: cap-project-portfolio-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
+  - builder: custom
+    commands:
+    - npx cds build --production

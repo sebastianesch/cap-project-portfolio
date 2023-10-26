@@ -1,5 +1,12 @@
 {
+  "xsappname": "cap-project-portfolio",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
   "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    },
     {
       "name": "$XSAPPNAME.CustomerAdmin",
       "description": "CustomerAdmin"
@@ -11,6 +18,13 @@
   ],
   "attributes": [],
   "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    },
     {
       "name": "CustomerAdmin",
       "description": "generated",
