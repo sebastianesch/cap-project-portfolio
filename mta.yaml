@@ -68,9 +68,23 @@ modules:
       - projectportofoliocustomersapp.zip
       name: projectportofoliocustomersapp
       target-path: resources/
+    - artifacts:
+      - projectportfolioprojectsapp.zip
+      name: projectportfolioprojectsapp
+      target-path: resources/
 - name: projectportofoliocustomersapp
   type: html5
   path: app/customersapp
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: projectportfolioprojectsapp
+  type: html5
+  path: app/projectsapp
   build-parameters:
     build-result: dist
     builder: custom
