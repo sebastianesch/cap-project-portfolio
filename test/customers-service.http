@@ -6,6 +6,10 @@ GET {{url}}/Customers
 Authorization: {{auth}}
 
 ###
+GET {{url}}/Customers/$count
+Authorization: {{auth}}
+
+###
 POST {{url}}/Customers
 Authorization: {{auth}}
 Content-Type: application/json
