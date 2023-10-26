@@ -2,6 +2,7 @@ using { projectportfolio.db as db } from '../db/schema';
 
 service ProjectsService @(requires: 'User') {
 
+    @odata.draft.enabled
     entity Projects as projection on db.Projects actions {
         function hasStarted() returns Boolean;
         function hasEnded() returns Boolean;
