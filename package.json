@@ -24,6 +24,10 @@
             "roles": [ "User", "CustomerAdmin" ]
           }
         }
+      },
+      "db": {
+          "kind": "sqlite",
+          "credentials": { "url": "db.sqlite" } 
       }
     }
   }
