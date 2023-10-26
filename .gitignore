@@ -9,6 +9,8 @@ default-*.json
 gen/
 node_modules/
 target/
+resources/
+app/**/dist
 
 # Web IDE, App Studio
 .che/
