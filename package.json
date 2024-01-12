@@ -16,10 +16,10 @@
         "@cap-js/sqlite": "^1",
         "@sap/cds-dk": "^7",
         "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
-        "@sap/ux-specification": "^1.108.16",
+        "@sap/ux-specification": "^1.120.1",
         "@sapui5/ts-types": "^1.92.2",
-        "eslint": "^7.32.0",
-        "rimraf": "^3.0.2"
+        "eslint": "^8",
+        "rimraf": "^5"
     },
     "scripts": {
         "start": "cds-serve",
