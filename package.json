@@ -18,16 +18,17 @@
         "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
         "@sap/ux-specification": "^1.120.1",
         "@sapui5/ts-types": "^1.92.2",
-        "eslint": "^8",
+        "eslint": "^7.32.0",
         "rimraf": "^5"
     },
     "scripts": {
         "start": "cds-serve",
         "watch-customersapp": "cds watch --open customersapp/webapp/index.html?sap-ui-xx-viewCache=false",
-        "undeploy": "cf undeploy cap-project-portfolio --delete-services --delete-service-keys --delete-service-brokers",
+        "undeploy": "cf undeploy undefined --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-projectsapp": "cds watch --open projectsapp/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-projectsapp": "cds watch --open projectsapp/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-customeranalyticsapp": "cds watch --open customeranalyticsapp/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {
@@ -60,6 +61,7 @@
     },
     "sapux": [
         "app/customersapp",
-        "app/projectsapp"
+        "app/projectsapp",
+        "app/customeranalyticsapp"
     ]
 }
