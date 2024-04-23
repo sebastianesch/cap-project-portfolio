@@ -29,20 +29,11 @@ Content-Type: application/json
 }
 
 ###
-GET {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
+GET {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}},IsActiveEntity=false)
 Authorization: {{auth}}
 
 ###
-PUT {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
-Authorization: {{auth}}
-Content-Type: application/json
-
-{
-    "name": "Foo 2 Inc."
-}
-
-###
-DELETE {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}})
+DELETE {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}},IsActiveEntity=false)
 Authorization: {{auth}}
 
 ###
@@ -55,5 +46,5 @@ Authorization: {{auth}}
 Accept-Language: de
 
 ###
-GET {{url}}/Customers(ID=29514726-9142-4af7-96db-3221a4fb817b)?$expand=projects
+GET {{url}}/Customers(ID=29514726-9142-4af7-96db-3221a4fb817b,IsActiveEntity=true)?$expand=projects
 Authorization: {{auth}}
