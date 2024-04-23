@@ -12,7 +12,7 @@ class ProjectsService extends cds.ApplicationService {
             // Read the project from the db
             // if the start date is today or in the past then return true - else false
             const project = await SELECT.one.from(Projects).where({ID: request.data.project })
-            const result = project.startDate < new Date()
+            const result = Date.parse(project.startDate) < new Date()
             request.reply(result) 
         })
 
@@ -26,9 +26,9 @@ class ProjectsService extends cds.ApplicationService {
 
         this.on('stop', 'Projects', async function onStopProjects(request) {
             log.info('on stop Projects - request.data', request.data, 'request.params:', request.params)
-            const projectId = request.params[0]
+            const projectId = request.params[0].ID
             const endDate = request.data.endDate ? request.data.endDate : request.timestamp
-            const result = await UPDATE(Projects).set({endDate: endDate }).where({ID: projectId })
+            const result = await UPDATE(Projects).set({endDate: endDate }).where({ID: projectId})
             if (result != 1) {
                 return request.error('Unable to update Project')
             }
@@ -36,17 +36,17 @@ class ProjectsService extends cds.ApplicationService {
 
         this.on('hasStarted', 'Projects', async function onHasStartedProjects(request) {
             log.info('on hasStarted Projects - request.data', request.data, 'request.params:', request.params)
-            const projectId = request.params[0]
+            const projectId = request.params[0].ID
             const project = await SELECT.one.from(Projects).where({ID: projectId })
-            const result = project.startDate < request.timestamp
+            const result = Date.parse(project.startDate) < request.timestamp
             request.reply(result)
         })
 
         this.on('hasEnded', 'Projects', async function onHasEndedProjects(request) {
             log.info('on hasEnded Projects - request.data', request.data, 'request.params:', request.params)
-            const projectId = request.params[0]
+            const projectId = request.params[0].ID
             const project = await SELECT.one.from(Projects).where({ID: projectId })
-            const result = project.endDate != undefined  && project.endDate < request.timestamp
+            const result = project.endDate != undefined  && Date.parse(project.endDate) < request.timestamp
             request.reply(result)
         })
 

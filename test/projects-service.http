@@ -15,15 +15,15 @@ Content-Type: application/json
 }
 
 ###
-GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.hasStarted()
+GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029,IsActiveEntity=true)/ProjectsService.hasStarted()
 Authorization: {{auth}}
 
 ###
-GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.hasEnded()
+GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029,IsActiveEntity=true)/ProjectsService.hasEnded()
 Authorization: {{auth}}
 
 ###
-POST {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)/ProjectsService.stop
+POST {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029,IsActiveEntity=true)/ProjectsService.stop
 Authorization: {{auth}}
 Content-Type: application/json
 
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ###
-GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029)
+GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029,IsActiveEntity=true)
 Authorization: {{auth}}
 
 ###
@@ -40,11 +40,11 @@ GET {{url}}/Projects
 Authorization: {{auth}}
 
 ###
-GET {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+GET {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029,IsActiveEntity=true)
 Authorization: {{auth}}
 
 ###
-PUT {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+PUT {{url}}/Projects(ID=c8941700-2a5e-4cae-a809-70d43f647029,IsActiveEntity=true)
 Authorization: {{auth}}
 Content-Type: application/json
 
@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd)
+DELETE {{url}}/Projects(ID=011a74f1-fc58-4502-8797-3dddc78e69cd,IsActiveEntity=true)
 Authorization: {{auth}}
 
 ###
