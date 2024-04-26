@@ -1,5 +1,9 @@
 # Troubleshooting Tips
 
+## MTA Build Issues
+
+Before you build the MTA archive, make sure to install the required packages via `npm install`.
+
 ## Connectivity Issues
 
 When your apps in the launchpad show erors instead of number for customes or projects or you can't load data in the apps
@@ -15,6 +19,7 @@ only requests to the backend.
 ![Chrome Developer Tools - Network Tab](chrome_developer_tools_networktrace.png)
 
 Things to check:
- - Is your CAP App running? Check in the Applications section of your Cloud Foundry space. (404 Not Found Error)
- - Is your HANA Cloud Instance started? Check in the HANA Cloud section of your Cloud Foundry space. (500 Internal Server Error)
- - Is your Role Collection setup correctly? Check in the Role Collections section of your Subaccount. (403 Forbidden Error)
+
+-   Is your CAP App running? Check in the Applications section of your Cloud Foundry space. (404 Not Found Error)
+-   Is your HANA Cloud Instance started? Check in the HANA Cloud section of your Cloud Foundry space. (500 Internal Server Error)
+-   Is your Role Collection setup correctly? Check in the Role Collections section of your Subaccount. (403 Forbidden Error)

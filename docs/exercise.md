@@ -9,13 +9,13 @@ a screenrecording of your app.
 
 The Multi-Target Application in this repository requires a Cloud Foundry environment with the following services:
 
- - [Application Logging](https://discovery-center.cloud.sap/serviceCatalog/application-logging-service)
- - [HTML5 Application Repository
-   Service](https://discovery-center.cloud.sap/serviceCatalog/html5-application-repository-service)
- - [Destination Service](https://discovery-center.cloud.sap/serviceCatalog/destination)
- - [Authorization and Trust Management Service
-   (XSUAA)](https://discovery-center.cloud.sap/serviceCatalog/authorization-and-trust-management-service)
- - [SAP HANA HDI Container](https://discovery-center.cloud.sap/serviceCatalog/sap-hana-cloud)
+-   [Application Logging](https://discovery-center.cloud.sap/serviceCatalog/application-logging-service)
+-   [HTML5 Application Repository
+    Service](https://discovery-center.cloud.sap/serviceCatalog/html5-application-repository-service)
+-   [Destination Service](https://discovery-center.cloud.sap/serviceCatalog/destination)
+-   [Authorization and Trust Management Service
+    (XSUAA)](https://discovery-center.cloud.sap/serviceCatalog/authorization-and-trust-management-service)
+-   [SAP HANA HDI Container](https://discovery-center.cloud.sap/serviceCatalog/sap-hana-cloud)
 
 To checkout and deploy the application you can use either
 [SAP Business Application Studio](https://discovery-center.cloud.sap/serviceCatalog/business-application-studio) on BTP
@@ -71,6 +71,9 @@ You can now close the "Get Started" view. In the "Explorer" view on the left you
 the application project cloned from Git.
 
 ## Step 2.3: Build the MTA archive
+
+> [!WARNING]
+> Before you build the MTA archive, make sure to install the required packages via `npm install`.
 
 You can initiate the build of the MTA archive for the appliction by either right-clicking on the `mta.yaml` file in the
 Explorer and then clicking on the "Build MTA Project" command in the context menu or by opening a Terminal (via the Menu
@@ -139,8 +142,8 @@ SAP Build Work Zone, standard edition.
 
 ![SAP BTP Cockpit - Subaccount - Instances and Subscriptions](btp_cockpit_trial_subaccount_instances_and_subscriptions_highlighted.png)
 
-*If you get an "Access Denied" error message, you have to add your user to the Role Collection "Launchpad_Admin" in the
-BTP Cockpit in Security > Role Collections. (See Step 1.2)*
+_If you get an "Access Denied" error message, you have to add your user to the Role Collection "Launchpad_Admin" in the
+BTP Cockpit in Security > Role Collections. (See Step 1.2)_
 
 ### Create a new Site
 
@@ -152,8 +155,8 @@ and choose "Manage Site Alias" and set it to "launchpad".
 Navigate to the "Channel Manager" in the left menu. For the "HTML5 Apps" Channel, click the Refresh Action in the Actions
 section on the right of the table. Wait for the Status to change to "Updated".
 
-*__Attention:__ Everytime you change your HTML5 Apps, you have to perform a Refresh of the Content Channel, otherwise the
-old version of your app will be displayed.*
+_**Attention:** Everytime you change your HTML5 Apps, you have to perform a Refresh of the Content Channel, otherwise the
+old version of your app will be displayed._
 
 ### Add Content to Your Content
 
@@ -173,9 +176,9 @@ and assign both apps to your group. Save your group.
 
 In the "Content Manager", click on "Create" and select "Role" to create a new Role for your Launchpad.
 
-- __Title:__ Project Portfolio Admin
-- __ID:__ project_portfolio_admin
-- __Description:__ Admin for the Project Portfolio App
+-   **Title:** Project Portfolio Admin
+-   **ID:** project_portfolio_admin
+-   **Description:** Admin for the Project Portfolio App
 
 Assign both apps to the role and click on save to save your role.
 
@@ -228,25 +231,25 @@ Next, you have to do some small changes to the application and deploy those chan
 
 We want to add a "City" attribute to our customers, so your task is to:
 
- - extend the Customers entity in `db/schema.cds` with a city attribute (including a translateable label)
- - add the translation for the label to the `i18n/i18n.properties` file
- - add example data for the city attribute in the `db/data/projectportfolio.db-Customers.csv` file
+-   extend the Customers entity in `db/schema.cds` with a city attribute (including a translateable label)
+-   add the translation for the label to the `i18n/i18n.properties` file
+-   add example data for the city attribute in the `db/data/projectportfolio.db-Customers.csv` file
 
 You can test your modifications without deploying to SAP BTP by running your app via `cds watch`. You should see the
 additional city attribute and your example data when you call the OData services for customers and projects.
 
 We also want to show the "City" attribute in the Customers app, so your task is to:
 
- - add the city attribute to the LineItem for the customers app in `app/customersapp/annotations.cds`
- - add the city attribute to the CustomerData FieldGroup in `app/customersapp/annotations.cds`
+-   add the city attribute to the LineItem for the customers app in `app/customersapp/annotations.cds`
+-   add the city attribute to the CustomerData FieldGroup in `app/customersapp/annotations.cds`
 
- ## Step 3.2: Build & Deployment
+## Step 3.2: Build & Deployment
 
- Build your MTA Archive either via the context menu or the mbt build tool. Then deploy your MTAR file again either via
- the context menu or the cf CLI (see 2.3 and 2.4). After successful deployment go to the Launchpad Admin app, navigate
- to the Channel Manager and update the "HTML5 Apps" Content Channel.
+Build your MTA Archive either via the context menu or the mbt build tool. Then deploy your MTAR file again either via
+the context menu or the cf CLI (see 2.3 and 2.4). After successful deployment go to the Launchpad Admin app, navigate
+to the Channel Manager and update the "HTML5 Apps" Content Channel.
 
- Now your changes should be visible in the Launchpad in your BTP trial account.
+Now your changes should be visible in the Launchpad in your BTP trial account.
 
 # Step 4: Send confirmation of your results to your supervisors
 
