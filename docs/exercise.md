@@ -202,7 +202,7 @@ visible. Click on "Edit" to change the Role Collection.
 
 We need to add the roles defined by the CAP Application backend and we need to assign our user to the Role Collection.
 
-### Add required role
+### Add required roles
 
 In the first section "Roles" click on the value help icon for the "Role Name" field. In the dialog that appears, set
 the filter for "Application Identifier" to "cap-roject-portfolio-\<your app identifier\>". The only visible roles should be
