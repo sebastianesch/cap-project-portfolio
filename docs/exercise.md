@@ -205,8 +205,8 @@ We need to add the roles defined by the CAP Application backend and we need to a
 ### Add required role
 
 In the first section "Roles" click on the value help icon for the "Role Name" field. In the dialog that appears, set
-the filter for "Application Identifier" to "cap-roject-portfolio-\<your app identifier\>". The only visible role should be
-the "User" role of the Project Portfolio app. Select it and click "Add" at the bottom of the dialog.
+the filter for "Application Identifier" to "cap-roject-portfolio-\<your app identifier\>". The only visible roles should be
+the "User", "CustomerAdmin" and "TokenExchange" roles of the Project Portfolio app. Select them and click "Add" at the bottom of the dialog.
 
 ### Add your user
 
