@@ -23,3 +23,13 @@ Things to check:
 -   Is your CAP App running? Check in the Applications section of your Cloud Foundry space. (404 Not Found Error)
 -   Is your HANA Cloud Instance started? Check in the HANA Cloud section of your Cloud Foundry space. (500 Internal Server Error)
 -   Is your Role Collection setup correctly? Check in the Role Collections section of your Subaccount. (403 Forbidden Error)
+
+## Role Collection Setup
+
+Your role collection has to have the same name as the Role in SAP Build Work Zone. The Role Collection has to include the three roles
+`CustomerAdmin`, `User` and `Token_Exchange` from the `cap-project-portfolio` application. The Role Collection has to be assigned
+to your user. And finally make sure to logout and login again after you have changed your Role Collection.
+
+## cap-project-portfolio-db-deployer App
+
+After deployment, the `cap-projeect-portfolio-db-deployer` app is in status stopped. This is fine - you don't need to start this app manually, it is run automatically when you deploy your MTA file.
