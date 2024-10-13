@@ -44,7 +44,7 @@ service CustomerAnalyticsService {
         ) as p
             on c.ID = p.customer_ID
         {
-            c.ID,
+            key c.ID,
             c.name,
             c.industry,
             c.country,
@@ -61,5 +61,11 @@ service CustomerAnalyticsService {
                 end
             )           as numberOfProjects : Integer
         }
+
+    @readonly
+    entity Projects as projection on db.Projects {
+        *,
+        customer : redirected to Customers
+    };
 
 }
