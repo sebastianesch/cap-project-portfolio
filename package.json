@@ -6,20 +6,20 @@
     "license": "UNLICENSED",
     "private": true,
     "dependencies": {
-        "@sap/cds": "^7",
+        "@sap/cds": "^8",
         "@sap/cds-hana": "^2",
-        "@sap/xssec": "^3",
+        "@sap/xssec": "^4",
         "express": "^4",
         "passport": "^0"
     },
     "devDependencies": {
         "@cap-js/sqlite": "^1",
-        "@sap/cds-dk": "^7",
+        "@sap/cds-dk": "^8",
         "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
         "@sap/ux-specification": "^1.120.1",
         "@sapui5/ts-types": "^1.92.2",
-        "eslint": "^7.32.0",
-        "rimraf": "^5"
+        "eslint": "^9",
+        "rimraf": "^6"
     },
     "scripts": {
         "start": "cds-serve",
